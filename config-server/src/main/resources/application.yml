@@ -1,0 +1,29 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///media/suzon-molla/6c7f7b11-5bec-4874-849c-cba822ab3f1e/java-projects/microservices-project/config-repo
+          default-label: main
+          search-paths: /
+        health:
+          repositories:
+            config-repo:
+              label: main
+              name: config-repo
+              profiles: development
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh,env
+
+logging:
+  level:
+    org.springframework.cloud.config: DEBUG
